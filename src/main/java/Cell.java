@@ -18,6 +18,7 @@ public class Cell {
         return this.occupiedBy;
     }
 
+
     public void resetCell(){
         this.occupiedBy = null;
     }

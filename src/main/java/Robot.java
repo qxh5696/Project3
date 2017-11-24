@@ -89,10 +89,6 @@ public class Robot extends Thread{
                     board[this.x][this.y].resetCell();
                     nextCell.occupiedBy = this;
                 }
-//                synchronized (nextCell) {
-//                    nextCell.occupiedBy = this;
-//                }
-
             }
         } else {
             // bfs to location
