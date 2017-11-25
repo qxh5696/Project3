@@ -45,8 +45,10 @@ public class RobotMain {
             }
         }
 
-        board[objectX][objectY].occupyCell(Integer.MAX_VALUE);
+        board[objectY][objectX].occupyCell(Integer.MAX_VALUE);
 
+        int good = 0;
+        int malicious = 0;
         for (int i = 0; i < k; i++) {
             int x = rand.nextInt(n);
             int y = rand.nextInt(m);
@@ -55,9 +57,15 @@ public class RobotMain {
                 y = rand.nextInt(m);
             }
             int mal = rand.nextInt(100);
-            boolean bad_robot = (mal < 25);
+            boolean badRobot = false;
+            if (malicious <= (malicious + good)/3)
+                badRobot = (mal < 25);
+            if (badRobot)
+                malicious++;
+            else
+                good++;
 
-            robots[i] = new Robot(x, y, i, bad_robot, board, robots);
+            robots[i] = new Robot(i, x, y, badRobot, board, robots);
         }
 
         for (int i = 0; i < robots.length; i++) {
