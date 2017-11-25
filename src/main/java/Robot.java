@@ -14,6 +14,7 @@ public class Robot extends Thread{
     boolean objectFound = false;
     Robot[] robots;
     Message[] mailbox;
+    Random rand;
 
     /**
      * Robot Constructor
@@ -35,6 +36,7 @@ public class Robot extends Thread{
         for (int i = 0; i < robots.length; i++) {
             mailbox[i] = null;
         }
+        rand = new Random();
     }
 
     /**
@@ -77,7 +79,6 @@ public class Robot extends Thread{
      * @param board - shared board object
      */
     public void move(Cell board[][]) {
-        Random rand = new Random();
         Cell[] nextCells = generateNeighbors(this.x, this.y);
         Cell nextCell = nextCells[rand.nextInt(4)];
         if (!this.objectFound) {
