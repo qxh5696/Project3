@@ -1,5 +1,7 @@
 package com.rit.edu.cs.copads.p3;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -65,12 +67,12 @@ public class Robot extends Thread {
         }
     }
 
-    private Cell[] generateNeighbors(int x, int y) {
-        Cell[] nextCells = new Cell[4];
-        nextCells[0] = (x < board.length - 1) ? board[x + 1][y] : null;
-        nextCells[1] = (x > 0) ? board[x - 1][y] : null;
-        nextCells[2] = (y < board[0].length - 1) ? board[x][y + 1] : null;
-        nextCells[3] = (y > 0) ? board[x][y - 1] : null;
+    private List<Cell> generateNeighbors(int x, int y) {
+        List<Cell> nextCells = new LinkedList<Cell>();
+        if (x < board.length - 1) nextCells.add(board[x+1][y]);
+        if (x > 0) nextCells.add(board[x-1][y]);
+        if (y < board[0].length - 1) nextCells.add(board[x][y + 1]);
+        if (y > 0) nextCells.add(board[x][y - 1]);
         return nextCells;
     }
 
@@ -80,9 +82,9 @@ public class Robot extends Thread {
      * @param board - shared board object
      */
     private void move(Cell[][] board) {
-        Cell[] nextCells = generateNeighbors(this.x, this.y);
-        Cell nextCell = nextCells[rand.nextInt(4)];
+        List<Cell> nextCells = generateNeighbors(this.x, this.y);
         if (!this.objectFound) {
+            Cell nextCell = nextCells.get(rand.nextInt(nextCells.size()));
             if (nextCell != null && nextCell.isOccupied() && nextCell.occupiedBy instanceof Integer) {
                 this.objectFound = true;
                 this.goal = nextCell;
