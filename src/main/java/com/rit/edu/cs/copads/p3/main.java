@@ -1,3 +1,5 @@
+package com.rit.edu.cs.copads.p3;
+
 import java.util.Random;
 
 /**
@@ -7,29 +9,29 @@ import java.util.Random;
 public class main {
 
     public static void main(String[] args) {
-        int N = Integer.parseInt(args[0]);
-        int M = Integer.parseInt(args[1]);
-        int K = Integer.parseInt(args[2]);
+        int n = Integer.parseInt(args[0]);
+        int m = Integer.parseInt(args[1]);
+        int k = Integer.parseInt(args[2]);
         int objectX = Integer.parseInt(args[3]);
         int objectY = Integer.parseInt(args[4]);
-        Cell[][] board = new Cell[N][M]; // ideal board implementation?
-        Robot[] robots = new Robot[K];
+        Cell[][] board = new Cell[n][m]; // ideal board implementation?
+        Robot[] robots = new Robot[k];
         Random rand = new Random();
 
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
                 board[i][j] = new Cell(i, j);
             }
         }
 
         board[objectX][objectY].occupyCell(Integer.MAX_VALUE);
 
-        for (int i = 0; i < K; i++) {
-            int x = rand.nextInt(N);
-            int y = rand.nextInt(M);
+        for (int i = 0; i < k; i++) {
+            int x = rand.nextInt(n);
+            int y = rand.nextInt(m);
             while (!board[x][y].isOccupied()) {
-                x = rand.nextInt(N);
-                y = rand.nextInt(M);
+                x = rand.nextInt(n);
+                y = rand.nextInt(m);
             }
             int mal = rand.nextInt(100);
             boolean bad_robot = (mal < 25);
