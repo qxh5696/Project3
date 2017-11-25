@@ -45,7 +45,8 @@ public class RobotMain {
             }
         }
 
-        board[objectY][objectX].occupyCell(Integer.MAX_VALUE);
+        PreciousObject preciousObject = new PreciousObject(objectX, objectY);
+        board[objectY][objectX].occupyCell(preciousObject);
 
         int good = 0;
         int malicious = 0;
