@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class RobotMain {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException{
         int n = 0;
         int m = 0;
         int k = 0;
@@ -68,12 +68,16 @@ public class RobotMain {
             robots[i] = new Robot(i, x, y, badRobot, board, robots);
         }
 
-        for (int i = 0; i < robots.length; i++) {
-            robots[i].start();
+        for (Robot robot: robots) {
+            robot.start();
+        }
+
+        for (Robot robot: robots) {
+            robot.join();
         }
     }
 
-    public static void usage(String error) {
+    private static void usage(String error) {
         System.err.println(error == null ? "An error occurred while parsing the arguments." : error);
         System.err.println(error == null ? "Please check to make sure that they follow the accepted usage." : "");
         System.err.println("Usage: java RobotMain n m k x y");
