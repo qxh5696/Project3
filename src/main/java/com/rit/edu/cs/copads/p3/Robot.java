@@ -6,16 +6,16 @@ import java.util.Random;
  * Created by qadirhaqq on 11/18/17.
  */
 public class Robot extends Thread {
-    int x;
-    int y;
-    boolean malicious;
-    int id;
-    Cell[][] board;
-    Cell goal;
-    boolean objectFound = false;
-    Robot[] robots;
-    Message[] mailbox;
-    Random rand;
+    private int x;
+    private int y;
+    private boolean malicious;
+    private int id;
+    private Cell[][] board;
+    private Cell goal;
+    private boolean objectFound = false;
+    private Robot[] robots;
+    private Message[] mailbox;
+    private Random rand;
 
     /**
      * com.rit.edu.cs.copads.p3.Robot Constructor
@@ -26,7 +26,7 @@ public class Robot extends Thread {
      * @param malicious - boolean determining if it's malicious or not
      * @param board     - reference to the shared board object
      */
-    public Robot(int id, int x, int y, boolean malicious, Cell[][] board, Robot[] robots) {
+    Robot(int id, int x, int y, boolean malicious, Cell[][] board, Robot[] robots) {
         this.id = id;
         this.x = x;
         this.y = y;
@@ -79,7 +79,7 @@ public class Robot extends Thread {
      *
      * @param board - shared board object
      */
-    public void move(Cell[][] board) {
+    private void move(Cell[][] board) {
         Cell[] nextCells = generateNeighbors(this.x, this.y);
         Cell nextCell = nextCells[rand.nextInt(4)];
         if (!this.objectFound) {
